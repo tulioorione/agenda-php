@@ -1,0 +1,13 @@
+# Local environment files
+.env
+.env.local
+
+# Local database credentials
+config/database.php
+config/*.local.php
+!config/*.example.php
+
+# Local database dumps and files
+*.sql
+*.sqlite
+*.sqlite3
