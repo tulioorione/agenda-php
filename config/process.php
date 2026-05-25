@@ -33,6 +33,32 @@ if($isPostRequest) {
                 $_SESSION["msg"] = "Nao foi possivel criar o contato.";
             }
         }
+    } elseif($type === "edit") {
+        $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT, [
+            "options" => ["min_range" => 1],
+        ]);
+        $name = trim($_POST["name"] ?? "");
+        $phone = trim($_POST["phone"] ?? "");
+        $observations = trim($_POST["observations"] ?? "");
+
+        if($id === null || $id === false || $name === "" || $phone === "") {
+            $_SESSION["msg"] = "Nao foi possivel atualizar o contato.";
+        } else {
+            $query = "UPDATE contacts SET name = :name, phone = :phone, observations = :observations WHERE id = :id";
+            $stmt = $conn->prepare($query);
+
+            try {
+                $stmt->execute([
+                    ":id" => $id,
+                    ":name" => $name,
+                    ":phone" => $phone,
+                    ":observations" => $observations,
+                ]);
+                $_SESSION["msg"] = "Contato atualizado com sucesso!";
+            } catch(PDOException $e) {
+                $_SESSION["msg"] = "Nao foi possivel atualizar o contato.";
+            }
+        }
     } else {
         $_SESSION["msg"] = "Operacao invalida.";
     }
