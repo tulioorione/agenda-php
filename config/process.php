@@ -2,24 +2,24 @@
 
 session_start();
 
-include_once("connection.php");
-include_once("url.php");
-$id;
+include_once(__DIR__ . "/connection.php");
+include_once(__DIR__ . "/url.php");
 
-if(!empty($_GET)) {
-    $id = $_GET["id"];
-}
+$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT, [
+    "options" => ["min_range" => 1],
+]);
+$contacts = [];
+$contact = null;
+
 // Retorna o dado de um contato
-if(!empty($id)) {
+if($id !== null && $id !== false) {
     $query = "SELECT * FROM contacts WHERE id = :id";
     $stmt = $conn->prepare($query);
-    $stmt->bindParam(":id", $id);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
-    $contact = $stmt->fetch();
+    $contact = $stmt->fetch() ?: null;
 } else {
     // Retorna todos os contatos
-    $contacts = [];
-
     $query = "SELECT * FROM contacts";
     $stmt = $conn->prepare($query);
     $stmt->execute();

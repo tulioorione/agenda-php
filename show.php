@@ -7,9 +7,17 @@ $_SESSION['msg'] = '';
 
 include_once("templates/header.php");
 ?>
-    <div class="container" id="view-contact-container">
-        <h1 id="main-title"><?= $contact["name"] ?></h1>
-    </div>
+<div class="container" id="view-contact-container">
+    <?php if($contact): ?>
+        <h1 id="main-title"><?= htmlspecialchars($contact["name"], ENT_QUOTES, "UTF-8") ?></h1>
+        <p class="bold">Telefone:</p>
+        <p><?= $contact["phone"] ?></p>
+        <p class="bold">Observação:</p>
+        <p><?= $contact["observations"] ?></p>
+    <?php else: ?>
+        <p id="empty-list-text">Contato não encontrado.</p>
+    <?php endif; ?>
+</div>
 <?php
 include_once("templates/footer.php");
 ?>
