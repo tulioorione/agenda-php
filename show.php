@@ -8,6 +8,7 @@ $_SESSION['msg'] = '';
 include_once("templates/header.php");
 ?>
 <div class="container" id="view-contact-container">
+    <?php include_once("templates/backbtn.html"); ?>
     <?php if($contact): ?>
         <h1 id="main-title"><?= htmlspecialchars($contact["name"], ENT_QUOTES, "UTF-8") ?></h1>
         <p class="bold">Telefone:</p>
