@@ -98,3 +98,25 @@
     text-decoration: none;
     color: #2e8ef5;
 }
+
+/* CREATE */ 
+#create-form,
+#edit-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#create-form .form-group,
+#edit-form .form-group {
+    margin-bottom: 16px;
+}
+
+#create-form label,
+#edit-form label {
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+#btn-c {
+    background-color: #007BFF;
+}

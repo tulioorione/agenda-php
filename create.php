@@ -6,7 +6,7 @@ include_once("config/url.php");
 <div class="container">
     <?php include_once("templates/backbtn.html"); ?>
     <h1 id="main-title">Criar contato</h1>
-    <form action="<?= $BASE_URL ?>config/process.php" method="POST">
+    <form id="create-form" action="<?= $BASE_URL ?>config/process.php" method="POST">
         <input type="hidden" name="type" value="create">
         <div class="form-group">
             <label for="name">Nome do contato:</label>
@@ -20,7 +20,7 @@ include_once("config/url.php");
             <label for="observations">Observação:</label>
             <textarea type="text" class="form-control" id="observations" name="observations" placeholder="Digite as observações" rows="3"></textarea> 
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button id="btn-c" type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 
