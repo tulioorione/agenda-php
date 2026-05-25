@@ -59,6 +59,29 @@ if($isPostRequest) {
                 $_SESSION["msg"] = "Nao foi possivel atualizar o contato.";
             }
         }
+    } elseif($type === "delete") {
+        $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT, [
+            "options" => ["min_range" => 1],
+        ]);
+
+        if($id === null || $id === false) {
+            $_SESSION["msg"] = "Nao foi possivel remover o contato.";
+        } else {
+            $query = "DELETE FROM contacts WHERE id = :id";
+            $stmt = $conn->prepare($query);
+
+            try {
+                $stmt->execute([":id" => $id]);
+
+                if($stmt->rowCount() > 0) {
+                    $_SESSION["msg"] = "Contato removido com sucesso!";
+                } else {
+                    $_SESSION["msg"] = "Contato nao encontrado.";
+                }
+            } catch(PDOException $e) {
+                $_SESSION["msg"] = "Nao foi possivel remover o contato.";
+            }
+        }
     } else {
         $_SESSION["msg"] = "Operacao invalida.";
     }
