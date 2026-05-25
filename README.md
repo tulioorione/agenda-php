@@ -1,3 +1,5 @@
+<img width="1917" height="951" alt="image" src="https://github.com/user-attachments/assets/b81305b9-71a2-415e-9e81-42369bbc025f" />
+
 # Agenda de Contatos
 
 Um projetinho simples de agenda de contatos feito em PHP puro com MySQL. A ideia é cadastrar, visualizar, editar e remover contatos, como uma agenda telefônica daquelas antigas, só que rodando no navegador.
